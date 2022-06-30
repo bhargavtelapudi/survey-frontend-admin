@@ -1,12 +1,20 @@
 <template>
   <v-app>
     <v-app-bar v-if="currentRoute !== '/login'">
-      <v-img class="mx-2" :src="logo" max-height="40" max-width="40" contain></v-img>
+      <v-img
+        class="mx-2"
+        :src="logo"
+        max-height="40"
+        max-width="40"
+        contain
+      ></v-img>
       <v-app-bar-title>Manage Surveys</v-app-bar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn variant="text" @click="goList">Surveys List </v-btn>
-        <v-btn variant="text" @click="goAdd">Add Album </v-btn>
+        <v-btn variant="text" @click="goToAdminsList">Admins</v-btn>
+        <v-btn variant="text" @click="goToRegisterAdmin">Register Admin</v-btn>
+        <v-btn variant="text" @click="goToSurevysList">Surveys List</v-btn>
+        <v-btn variant="text" @click="goToCreateSurvey">Create Survey</v-btn>
       </v-toolbar-items>
     </v-app-bar>
     <router-view />
@@ -19,14 +27,20 @@ export default {
   name: "App",
   data: () => ({
     logo,
-    currentRoute: ""
+    currentRoute: "",
   }),
   methods: {
-    goAdd() {
-      this.$router.push({ name: "add" });
+    goToAdminsList() {
+      this.$router.push({ name: "adminsList" });
     },
-    goList() {
-      this.$router.push({ name: "albums" });
+    goToRegisterAdmin() {
+      this.$router.push({ name: "registerAdmin" });
+    },
+    goToSurevysList() {
+      this.$router.push({ name: "surveysList" });
+    },
+    goToCreateSurvey() {
+      this.$router.push({ name: "createSurvey" });
     },
   },
   created() {
@@ -51,7 +65,7 @@ html {
   --lightBlack: #202020;
   --colorWhite: #ffff;
   --colorLightGrey: #d6d1d19c;
-  --lightGrey: #dbd7d7;
+  --lightGrey: #f8f2f2;
   --boxShadow: 0px 10px 25px rgba(0, 0, 0, 0.177);
 }
 
@@ -63,6 +77,13 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.wrapper {
+  padding: 5% 40px 0 40px;
+  background: var(--lightGrey);
+  min-height: 100vh;
+  max-height: auto;
 }
 
 .form {
