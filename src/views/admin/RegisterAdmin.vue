@@ -17,7 +17,7 @@
           label="Password"
           type="password"
         ></v-text-field>
-        <button @click="handleregister" class="black-button">
+        <button @click="handleregister" class="black-button width-100">
           CREATE ADMIN
         </button>
       </v-form>
@@ -69,18 +69,7 @@ export default {
   margin: 10px 0;
   font-weight: 800;
 }
-.black-button {
-  background: var(--colorBlack);
-  border-radius: 15px;
-  padding: 15px;
-  width: 100%;
-  transition: 0.4s ease-in;
-  color: var(--colorWhite);
-  margin: 10px 0;
-}
-.black-button:hover {
-  box-shadow: 0px 10px 25px #2b2b2b7a;
-}
+
 .v-input__details {
   display: none;
 }

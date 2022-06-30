@@ -15,6 +15,9 @@
         <v-btn variant="text" @click="goToRegisterAdmin">Register Admin</v-btn>
         <v-btn variant="text" @click="goToSurevysList">Surveys List</v-btn>
         <v-btn variant="text" @click="goToCreateSurvey">Create Survey</v-btn>
+        <button @click="handleLogout" class="black-button">
+          LOGOUT
+        </button>
       </v-toolbar-items>
     </v-app-bar>
     <router-view />
@@ -42,6 +45,9 @@ export default {
     goToCreateSurvey() {
       this.$router.push({ name: "createSurvey" });
     },
+    handleLogout(){
+       this.$router.push({ name: "login" });
+    }
   },
   created() {
     this.$watch(
@@ -84,6 +90,20 @@ body {
   background: var(--lightGrey);
   min-height: 100vh;
   max-height: auto;
+}
+ .width-100{
+   width: 100%;
+ }
+ .black-button {
+  background: var(--colorBlack);
+  border-radius: 15px;
+  padding: 15px;
+  transition: 0.4s ease-in;
+  color: var(--colorWhite);
+  margin: 10px 0;
+}
+.black-button:hover {
+  box-shadow: 0px 10px 25px #2b2b2b7a;
 }
 
 .form {
