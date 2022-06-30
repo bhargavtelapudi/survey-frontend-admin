@@ -1,1 +1,1 @@
-# survey-frontend-admin
+# survey-frontend-super-admin
