@@ -22,6 +22,11 @@ const routes = [
     name: "login",
     component: () => import("./views/auth/Login.vue")
   },
+  {
+    name: 'registerAdmin',
+    path: '/registerAdmin',
+    component: () => import('./views/admin/RegisterAdmin.vue')
+  }
 ];
 const router = createRouter({
   base: process.env.NODE_ENV === 'development' ? '/' : '/album-frontend/',

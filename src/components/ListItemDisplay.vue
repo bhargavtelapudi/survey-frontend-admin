@@ -4,10 +4,10 @@
       <span>{{ album.username }}</span>
     </v-col>
     <v-col cols="9" sm="2">
-      <span> {{ album.email }}</span>
+      <span> {{ album.organisation }}</span>
     </v-col>
     <v-col cols="4" sm="2">
-      <span> {{ album.organisation }}</span>
+      <span> {{ album.email }}</span>
     </v-col>
     <v-col cols="9" sm="1">
       <v-btn
@@ -41,11 +41,11 @@ export default {
 };
 </script>
 <style>
-.album__list-item{
+.album__list-item {
   display: flex;
   justify-content: center;
-  margin:0;
+  margin: 0;
   padding: 5px 0;
-  border-top: 1px solid var(--lightGrey);
+  border-top: 1px solid var(--colorLightGrey);
 }
 </style>
