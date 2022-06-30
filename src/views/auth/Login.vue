@@ -4,22 +4,22 @@
     <div class="login-wrapper">
       <div class="login-headings">
         <h1>Login</h1>
-        <h5>Welcome Back!</h5>
+        <h5>{{ message }}</h5>
       </div>
       <v-form class="login-form">
         <v-text-field
-          v-model="formData.email"
+          v-model="loginForm.email"
           label="Email"
           outlined
           shaped
         ></v-text-field>
         <v-text-field
-          v-model="formData.password"
+          v-model="loginForm.password"
           label="Password"
           type="password"
           outlined
         ></v-text-field>
-        <button @click="handlelogin" class="border-button">LOGIN</button>
+        <button @click="handleLogin" class="border-button">LOGIN</button>
       </v-form>
     </div>
   </div>
@@ -30,13 +30,22 @@ export default {
   name: "Login",
   data() {
     return {
-      message: "",
-      formData: {
+      message: "Welcome Back !",
+      loginForm: {
         email: "",
         password: "",
       },
       loginBgImg,
     };
+  },
+  methods: {
+    handleLogin() {
+      if (this.loginForm.email && this.loginForm.password) {
+        this.$router.push({ name: "adminsList" });
+      } else {
+        this.message = "Email & Password Required !";
+      }
+    },
   },
 };
 </script>
