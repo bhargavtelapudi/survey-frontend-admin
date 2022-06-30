@@ -1,1 +1,1 @@
-# survey-frontend-admin
+# surevy-frontend application for super admin
