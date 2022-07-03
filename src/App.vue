@@ -11,8 +11,8 @@
       <v-app-bar-title>Manage Surveys</v-app-bar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn variant="text" @click="goToAdminsList">Admins</v-btn>
-        <v-btn variant="text" @click="goToRegisterAdmin">Register Admin</v-btn>
+        <v-btn variant="text" @click="goToUsersList">Users List</v-btn>
+        <v-btn variant="text" @click="goToRegisterAdmin">Register User</v-btn>
         <v-btn variant="text" @click="goToSurevysList">Surveys List</v-btn>
         <v-btn variant="text" @click="goToCreateSurvey">Create Survey</v-btn>
         <button @click="handleLogout" class="black-button">
@@ -33,11 +33,11 @@ export default {
     currentRoute: "",
   }),
   methods: {
-    goToAdminsList() {
-      this.$router.push({ name: "adminsList" });
+    goToUsersList() {
+      this.$router.push({ name: "usersList" });
     },
     goToRegisterAdmin() {
-      this.$router.push({ name: "registerAdmin" });
+      this.$router.push({ name: "registerUser" });
     },
     goToSurevysList() {
       this.$router.push({ name: "surveysList" });
@@ -50,6 +50,12 @@ export default {
     }
   },
   created() {
+    const isAuth = localStorage.getItem("auth");
+    if (isAuth === "true") {
+      this.$router.push({ name: "usersList" });
+    } else {
+      this.$router.push({ name: "login" });
+    }
     this.$watch(
       () => this.$route.params,
       () => {
@@ -97,7 +103,7 @@ body {
  .black-button {
   background: var(--colorBlack);
   border-radius: 15px;
-  padding: 15px;
+  padding: 10px 15px;
   transition: 0.4s ease-in;
   color: var(--colorWhite);
   margin: 10px 0;
@@ -121,5 +127,11 @@ body {
 
 .highlight__text {
   color: rgb(144, 144, 187);
+}
+.v-input__details {
+  display: none;
+}
+.v-input {
+  margin: 5px 0;
 }
 </style>

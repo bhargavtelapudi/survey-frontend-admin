@@ -18,7 +18,7 @@
   </v-form>
 </template>
 <script>
-import AlbumDataService from "../../services/AlbumDataService";
+import AdminDataService from "../../services/AdminDataService";
 import ArtistDataService from "../../services/ArtistDataService";
 
 export default {
@@ -44,7 +44,7 @@ export default {
         artist: this.album.artistName,
         published: this.album.published,
       };
-      AlbumDataService.create(data)
+      AdminDataService.create(data)
         .then((response) => {
           this.album.id = response.data.id;
           console.log("add???" + response.data);

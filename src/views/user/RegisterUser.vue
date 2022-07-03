@@ -3,7 +3,7 @@
   <div class="register">
     <div class="register-wrapper">
       <div class="register-headings">
-        <h1>Create Account For Admin</h1>
+        <h1>Create Account For User</h1>
       </div>
       <v-form class="register-form">
         <v-text-field v-model="form.email" label="Email"></v-text-field>
@@ -18,7 +18,7 @@
           type="password"
         ></v-text-field>
         <button @click="handleregister" class="black-button width-100">
-          CREATE ADMIN
+          CREATE USER
         </button>
       </v-form>
     </div>
@@ -70,10 +70,5 @@ export default {
   font-weight: 800;
 }
 
-.v-input__details {
-  display: none;
-}
-.v-input {
-  margin: 5px 0 !important;
-}
+
 </style>
