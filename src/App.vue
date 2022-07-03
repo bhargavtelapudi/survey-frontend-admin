@@ -93,7 +93,7 @@ body {
 
 .wrapper {
   padding: 5% 40px 0 40px;
-  background: var(--lightGrey);
+  background: #eae9e9;
   min-height: 100vh;
   max-height: auto;
 }
@@ -118,6 +118,7 @@ body {
   margin-top: 15px;
   padding: 20px 20px;
   box-shadow: var(--boxShadow);
+  background: var(--colorWhite);
 }
 
 .checkbox {
