@@ -41,7 +41,7 @@ export default {
   methods: {
     handleLogin() {
       if (this.loginForm.email && this.loginForm.password) {
-        this.$router.push({ name: "adminsList" });
+        this.$router.push({ name: "usersList" });
       } else {
         this.message = "Email & Password Required !";
       }

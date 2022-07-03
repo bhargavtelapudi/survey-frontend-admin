@@ -11,7 +11,7 @@
       <v-app-bar-title>Manage Surveys</v-app-bar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn variant="text" @click="goToUsersList">Users</v-btn>
+        <v-btn variant="text" @click="goToUsersList">Users List</v-btn>
         <v-btn variant="text" @click="goToRegisterAdmin">Register User</v-btn>
         <v-btn variant="text" @click="goToSurevysList">Surveys List</v-btn>
         <v-btn variant="text" @click="goToCreateSurvey">Create Survey</v-btn>
@@ -52,7 +52,7 @@ export default {
   created() {
     const isAuth = localStorage.getItem("auth");
     if (isAuth === "true") {
-      this.$router.push({ name: "adminsList" });
+      this.$router.push({ name: "usersList" });
     } else {
       this.$router.push({ name: "login" });
     }
