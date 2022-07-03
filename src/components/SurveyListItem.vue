@@ -1,23 +1,23 @@
 <template>
-  <v-row class="album__list-item">
+  <v-row class="user__list-item">
     <v-col cols="9" sm="2">
-      <span>{{ album.username }}</span>
+      <span>{{ survey.title }}</span>
     </v-col>
     <v-col cols="9" sm="2">
-      <span> {{ album.organisation }}</span>
+      <span> {{ survey.description }}</span>
     </v-col>
     <v-col cols="4" sm="2">
-      <span> {{ album.email }}</span>
+      <span> {{ survey.createdBy }}</span>
     </v-col>
     <v-col cols="9" sm="1">
       <v-btn
         size="x-small"
         icon="mdi-format-list-bulleted-type"
-        @click="viewAlbum"
+        @click="viewSurvey"
       />
     </v-col>
     <v-col cols="9" sm="1">
-      <v-btn size="x-small" icon="mdi-trash-can" @click="deleteAlbum" />
+      <v-btn size="x-small" icon="mdi-trash-can" @click="deleteSurvey" />
     </v-col>
   </v-row>
 </template>
@@ -25,23 +25,23 @@
 <script>
 export default {
   props: {
-    album: Object,
+    survey: Object,
   },
   data() {
     return {};
   },
   methods: {
-    deleteAlbum() {
-      this.$emit("deleteAlbum");
+    deleteSurvey() {
+      this.$emit("deleteSurvey");
     },
-    viewAlbum() {
-      this.$emit("viewAlbum");
+    viewSurvey() {
+      this.$emit("viewSurvey");
     },
   },
 };
 </script>
 <style>
-.album__list-item {
+.user__list-item {
   display: flex;
   justify-content: center;
   margin: 0;

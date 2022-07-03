@@ -2,19 +2,14 @@ import { createWebHistory, createRouter } from "vue-router";
 const routes = [
   {
     path: "/",
-    alias: "/adminsList",
-    name: "adminsList",
-    component: () => import("./views/admin/AdminsList.vue")
-  },
-  {
-    path: "/add",
-    name: "add",
-    component: () => import("./views/admin/AddAlbum.vue")
+    alias: "/users-list",
+    name: "usersList",
+    component: () => import("./views/user/UsersList.vue")
   },
   {
     path: "/view/:id",
     name: "view",
-    component: () => import("./views/admin/ViewAlbum.vue"),
+    component: () => import("./views/user/ViewAlbum.vue"),
     props: true
   },
   {
@@ -23,9 +18,14 @@ const routes = [
     component: () => import("./views/auth/Login.vue")
   },
   {
-    name: 'registerAdmin',
-    path: '/registerAdmin',
-    component: () => import('./views/admin/RegisterAdmin.vue')
+    name: 'registerUser',
+    path: '/register-user',
+    component: () => import('./views/user/RegisterUser.vue')
+  },
+  {
+    name: 'surveysList',
+    path: '/surveys',
+    component: () => import('./views/admin/SurveysList.vue')
   }
 ];
 const router = createRouter({

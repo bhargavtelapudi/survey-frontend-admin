@@ -61,7 +61,7 @@
   </h2>
 </template>
 <script>
-import AlbumDataService from "../../services/AlbumDataService";
+import AdminDataService from "../../services/AdminDataService";
 export default {
   name: "view-album",
   props: ["id"],

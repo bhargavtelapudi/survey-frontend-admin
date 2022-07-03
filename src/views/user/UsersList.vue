@@ -1,11 +1,11 @@
 <template>
   <div class="wrapper">
-    <h1>Admins List</h1>
+    <h1>Users List</h1>
     <h4 class="highlight__text">{{ message }}</h4>
-    <div v-if="admins.length > 0">
+    <div v-if="users.length > 0">
       <v-row class="albums__list--table">
         <v-col cols="9" sm="2">
-          <span>Admin Name</span>
+          <span>User Name</span>
         </v-col>
         <v-col cols="9" sm="2">
           <span>Organisation</span>
@@ -20,66 +20,63 @@
           <span>Delete</span>
         </v-col>
         <div class="album__item--wrapper">
-          <ListItemDisplay
-            v-for="admin in admins"
-            :key="admin.id"
-            :album="admin"
-            @deleteAlbum="goDelete(admin)"
-            @viewAlbum="goView(admin)"
+          <UserListItem
+            v-for="user in users"
+            :key="user.id"
+            :user="user"
+            @deleteUser="goDelete(user)"
+            @viewUser="goView(user)"
           />
         </div>
       </v-row>
     </div>
     <h2
-      v-else-if="admins.length < 1"
+      v-else-if="users.length < 1"
       class="highlight__text"
       style="text-align: center"
     >
-      NO ADMINS FOUND
+      NO users FOUND
     </h2>
   </div>
 </template>
 <script>
-import AlbumDataService from "../../services/AlbumDataService";
-import ListItemDisplay from "@/components/ListItemDisplay.vue";
+import UserDataService from "../../services/UserDataService";
+import UserListItem from "@/components/UserListItem.vue";
 export default {
-  name: "admins-list",
+  name: "users-list",
   data() {
     return {
-      admins: [
+      users: [
         {
           username: "test",
           email: "test@email.com",
           organisation: "google",
-          password: "xsdwefadaddadfad",
+          password: "",
         },
       ],
-      currentAlbum: null,
-      currentIndex: -1,
-      title: "",
-      message: "View or Delete Admins",
+      message: "View or Delete users",
     };
   },
   components: {
-    ListItemDisplay,
+    UserListItem,
   },
   methods: {
     goView(album) {
       this.$router.push({ name: "view", params: { id: album.id } });
     },
     goDelete(album) {
-      AlbumDataService.delete(album.id)
+      UserDataService.delete(album.id)
         .then(() => {
-          this.retrieveAlbums();
+          this.retreiveUsers();
         })
         .catch((e) => {
           this.message = e.response.data.message;
         });
     },
-    retrieveAlbums() {
-      AlbumDataService.getAll()
+    retreiveUsers() {
+      UserDataService.getAllUsers()
         .then((response) => {
-          this.albums = response.data;
+          this.users = response.data;
         })
         .catch((e) => {
           this.message = e.response.data.message;
@@ -87,7 +84,7 @@ export default {
     },
   },
   mounted() {
-    this.retrieveAlbums();
+    this.retreiveUsers();
   },
 };
 </script>
