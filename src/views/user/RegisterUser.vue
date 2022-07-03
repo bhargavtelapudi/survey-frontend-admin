@@ -70,10 +70,5 @@ export default {
   font-weight: 800;
 }
 
-.v-input__details {
-  display: none;
-}
-.v-input {
-  margin: 5px 0 !important;
-}
+
 </style>

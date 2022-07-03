@@ -50,6 +50,12 @@ export default {
     }
   },
   created() {
+    const isAuth = localStorage.getItem("auth");
+    if (isAuth === "true") {
+      this.$router.push({ name: "adminsList" });
+    } else {
+      this.$router.push({ name: "login" });
+    }
     this.$watch(
       () => this.$route.params,
       () => {
@@ -97,7 +103,7 @@ body {
  .black-button {
   background: var(--colorBlack);
   border-radius: 15px;
-  padding: 15px;
+  padding: 10px 15px;
   transition: 0.4s ease-in;
   color: var(--colorWhite);
   margin: 10px 0;
@@ -121,5 +127,11 @@ body {
 
 .highlight__text {
   color: rgb(144, 144, 187);
+}
+.v-input__details {
+  display: none;
+}
+.v-input {
+  margin: 5px 0;
 }
 </style>
