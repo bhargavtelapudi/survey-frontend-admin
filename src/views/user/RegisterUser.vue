@@ -48,8 +48,8 @@ export default {
         password: "",
         confirmPassword:"",
         userName: "",
-        organization: "",
-      },
+        organization: ""
+      }
     };
   },
   methods:{
@@ -85,7 +85,6 @@ export default {
           this.message = e.response.data.message;
         });
     },
-  },
   }
 };
 </script>
