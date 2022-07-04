@@ -26,6 +26,7 @@
 </template>
 <script>
 import loginBgImg from "../../assets/survey.jpg";
+import AuthDataService from "../../services/AuthDataService";
 export default {
   name: "Login",
   data() {
@@ -40,11 +41,27 @@ export default {
   },
   methods: {
     handleLogin() {
-      if (this.loginForm.email && this.loginForm.password) {
-        this.$router.push({ name: "usersList" });
-      } else {
+      if (!this.loginForm.email || !this.loginForm.password) {
         this.message = "Email & Password Required !";
+        return;
       }
+      const formData = {
+        email: this.loginForm.email,
+        password: this.loginForm.password,
+      };
+      AuthDataService.login(formData)
+        .then((response) => {
+          if (response.status === 200 && response.data.user_type === "admin") {
+            sessionStorage.setItem("authToken", response.data.accessToken);
+            sessionStorage.setItem("userId", response.data.id);
+             sessionStorage.setItem("userType", response.data.user_type);
+            this.$router.push({ name: "usersList" });
+          }
+        })
+        .catch((e) => {
+          console.log("error?", e);
+          this.message = e.response.data.message;
+        });
     },
   },
 };

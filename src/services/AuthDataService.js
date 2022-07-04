@@ -1,7 +1,7 @@
 import http from "../http-common";
 class AuthService {
   login(authData) {
-    return http.post(`/user/signin`, authData);
+    return http.post(`/auth/login`, authData);
   }
   logout(emailId) {
     return http.get(`/users/logout/${emailId}`);
