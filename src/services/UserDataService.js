@@ -2,8 +2,8 @@ import http from "../http-common";
 const accessToken = sessionStorage.getItem("token");
 
 class UserDataService {
-  createUser(formData) {
-    return http.post("/user/signup", formData);
+  createUser(userData) {
+    return http.post(`/auth/register`, userData);
   }
   getAllUsers() {
     return http.get("/user/alladmins",{

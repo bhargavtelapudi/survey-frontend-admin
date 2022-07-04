@@ -4,7 +4,7 @@
       <span>{{ user.username }}</span>
     </v-col>
     <v-col cols="9" sm="2">
-      <span> {{ user.organisation }}</span>
+      <span> {{ user.organization }}</span>
     </v-col>
     <v-col cols="4" sm="2">
       <span> {{ user.email }}</span>
