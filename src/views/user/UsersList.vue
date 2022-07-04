@@ -8,7 +8,7 @@
           <span>User Name</span>
         </v-col>
         <v-col cols="9" sm="2">
-          <span>Organisation</span>
+          <span>organization</span>
         </v-col>
         <v-col cols="4" sm="2">
           <span>Email</span>
@@ -50,7 +50,7 @@ export default {
         {
           username: "test",
           email: "test@email.com",
-          organisation: "google",
+          organization: "google",
           password: "",
         },
       ],
