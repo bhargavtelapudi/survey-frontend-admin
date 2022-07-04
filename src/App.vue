@@ -15,9 +15,7 @@
         <v-btn variant="text" @click="goToRegisterAdmin">Register User</v-btn>
         <v-btn variant="text" @click="goToSurevysList">Surveys List</v-btn>
         <v-btn variant="text" @click="goToCreateSurvey">Create Survey</v-btn>
-        <button @click="handleLogout" class="black-button">
-          LOGOUT
-        </button>
+        <button @click="handleLogout" class="black-button">LOGOUT</button>
       </v-toolbar-items>
     </v-app-bar>
     <router-view />
@@ -45,13 +43,14 @@ export default {
     goToCreateSurvey() {
       this.$router.push({ name: "createSurvey" });
     },
-    handleLogout(){
-       this.$router.push({ name: "login" });
-    }
+    handleLogout() {
+      this.$router.push({ name: "login" });
+    },
   },
   created() {
-    const isAuth = localStorage.getItem("auth");
-    if (isAuth === "true") {
+    const isAuth = sessionStorage.getItem("authToken");
+    const userType = sessionStorage.getItem("userType");
+    if (isAuth && userType === "admin") {
       this.$router.push({ name: "usersList" });
     } else {
       this.$router.push({ name: "login" });
@@ -97,10 +96,10 @@ body {
   min-height: 100vh;
   max-height: auto;
 }
- .width-100{
-   width: 100%;
- }
- .black-button {
+.width-100 {
+  width: 100%;
+}
+.black-button {
   background: var(--colorBlack);
   border-radius: 15px;
   padding: 10px 15px;
