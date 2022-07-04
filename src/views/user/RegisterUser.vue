@@ -4,6 +4,7 @@
       <div class="register-wrapper">
         <div class="register-headings">
           <h1>Create Account For User</h1>
+          <h5>{{ message }}</h5>
         </div>
         <v-form class="register-form">
           <v-text-field
@@ -28,7 +29,7 @@
             label="Confirm Password*"
             type="password"
           ></v-text-field>
-          <button @click="handleregister" class="black-button width-100">
+          <button @click="handleRegister" class="black-button width-100">
             CREATE USER
           </button>
         </v-form>
@@ -46,14 +47,14 @@ export default {
       registerForm: {
         email: "",
         password: "",
-        confirmPassword:"",
+        confirmPassword: "",
         userName: "",
-        organization: ""
-      }
+        organization: "",
+      },
     };
   },
-  methods:{
-     handleregister(e) {
+  methods: {
+    handleRegister(e) {
       e.preventDefault();
       if (
         !this.registerForm.email ||
@@ -72,8 +73,8 @@ export default {
         email: this.registerForm.email,
         user_name: this.registerForm.userName,
         password: this.registerForm.password,
-        organization:this.registerForm.organization,
-        user_type:"admin"
+        organization: this.registerForm.organization,
+        user_type: "user",
       };
       UserDataService.createUser(registerForm)
         .then((response) => {
@@ -85,7 +86,7 @@ export default {
           this.message = e.response.data.message;
         });
     },
-  }
+  },
 };
 </script>
  
