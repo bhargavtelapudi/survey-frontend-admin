@@ -1,5 +1,4 @@
 import http from "../http-common";
-const accessToken = sessionStorage.getItem("authToken");
 
 class UserDataService {
   createUser(userData) {
@@ -8,7 +7,7 @@ class UserDataService {
   getAllUsers() {
     return http.get("/admin/userlist",{
       headers: {
-        'x-access-token': accessToken
+        'x-access-token':  sessionStorage.getItem("authToken")
       }
     });
   }
