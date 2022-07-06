@@ -1,7 +1,9 @@
 <template>
   <div class="wrapper">
-    <h1>Users List</h1>
-    <h4 class="highlight__text">{{ message }}</h4>
+    <div class="register-headings">
+      <h1>Users List</h1>
+      <h4 class="highlight__text">{{ message }}</h4>
+    </div>
     <div v-if="users.length > 0">
       <v-row class="albums__list--table">
         <v-col cols="9" sm="2">
@@ -89,19 +91,4 @@ export default {
 };
 </script>
 <style>
-.albums__list--table {
-  border: 1px solid var(--colorLightGrey);
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  margin: 20px 0px 20px 0px;
-  box-shadow: var(--boxShadow);
-  background: var(--colorWhite);
-}
-
-.album__item--wrapper {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
 </style>

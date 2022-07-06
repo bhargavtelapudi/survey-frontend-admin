@@ -1,7 +1,9 @@
 <template>
   <div class="wrapper">
-    <h1>Surveys List</h1>
-    <h4 class="highlight__text">{{ message }}</h4>
+    <div class="register-headings">
+      <h1>Surveys List</h1>
+      <h4 class="highlight__text">{{ message }}</h4>
+    </div>
     <div v-show="surveysLength > 0">
       <v-row class="albums__list--table">
         <v-col cols="9" sm="2">
@@ -38,7 +40,7 @@ export default {
   data() {
     return {
       surveys: {},
-      surveysLength:0,
+      surveysLength: 0,
       message: "View or Delete Surveys",
     };
   },

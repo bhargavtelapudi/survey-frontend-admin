@@ -91,19 +91,6 @@ export default {
   box-shadow: 0px 10px 25px #2b2b2b7a;
 }
 
-.register-headings {
-  margin: 15px 0;
-  font-weight: 600;
-  font-size: 18px;
-}
-
-.register-headings h1 {
-  font-size: 25px;
-  text-align: center;
-  margin: 10px 0;
-  font-weight: 800;
-}
-
 @media(max-width: 900px) {
   .register-wrapper {
     width: 90%;
