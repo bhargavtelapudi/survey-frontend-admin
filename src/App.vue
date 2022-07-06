@@ -98,6 +98,15 @@ body {
   max-height: auto;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 20px;
+}
+
 .width-100 {
   width: 100%;
 }
@@ -141,6 +150,7 @@ body {
 
 .highlight__text {
   color: rgb(144, 144, 187);
+  font-size: 16px;
 }
 
 .v-input__details {
@@ -149,6 +159,34 @@ body {
 
 .v-input {
   margin: 10px 0 !important;
+}
+
+.register-headings {
+  margin: 10px 0 15px 0;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.register-headings h1 {
+  font-size: 25px;
+  margin: 5px 0;
+  font-weight: 800;
+}
+
+.albums__list--table {
+  border: 1px solid var(--colorLightGrey);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0px 20px 0px !important;
+  box-shadow: var(--boxShadow);
+  background: var(--colorWhite);
+}
+
+.album__item--wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 @media(max-width: 900px) {
