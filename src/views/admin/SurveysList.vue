@@ -2,16 +2,16 @@
   <div class="wrapper">
     <h1>Surveys List</h1>
     <h4 class="highlight__text">{{ message }}</h4>
-    <div v-if="surveys.length > 0">
+    <div v-show="surveysLength > 0">
       <v-row class="albums__list--table">
         <v-col cols="9" sm="2">
-          <span>Survey Title</span>
+          <span>Title</span>
         </v-col>
         <v-col cols="9" sm="2">
           <span>Description</span>
         </v-col>
         <v-col cols="4" sm="2">
-          <span>Created By</span>
+          <span>Status</span>
         </v-col>
         <v-col cols="9" sm="1">
           <span>View</span>
@@ -20,21 +20,12 @@
           <span>Delete</span>
         </v-col>
         <div class="album__item--wrapper">
-          <SurveyListItem
-            v-for="survey in surveys"
-            :key="survey.id"
-            :survey="survey"
-            @deleteSurvey="goDelete(survey)"
-            @viewSurvey="goView(survey)"
-          />
+          <SurveyListItem v-for="survey in surveys.survey" :key="survey.id" :survey="survey"
+            @deleteSurvey="goDelete(survey.id)" @viewSurvey="goView(survey.id)" />
         </div>
       </v-row>
     </div>
-    <h2
-      v-else-if="surveys.length < 1"
-      class="highlight__text"
-      style="text-align: center"
-    >
+    <h2 v-show="surveysLength < 1" class="highlight__text" style="text-align: center">
       NO SURVEYS FOUND
     </h2>
   </div>
@@ -46,13 +37,8 @@ export default {
   name: "surveys-list",
   data() {
     return {
-      surveys: [
-        {
-          title: "test",
-          description: "test@email.com",
-          createdBy: "google",
-        },
-      ],
+      surveys: {},
+      surveysLength:0,
       message: "View or Delete Surveys",
     };
   },
@@ -63,8 +49,8 @@ export default {
     goView(album) {
       this.$router.push({ name: "view", params: { id: album.id } });
     },
-    goDelete(album) {
-      AdminDataService.delete(album.id)
+    goDelete(id) {
+      AdminDataService.deleteSurvey(id)
         .then(() => {
           this.retreiveSurveys();
         })
@@ -75,7 +61,8 @@ export default {
     retreiveSurveys() {
       AdminDataService.getAllAdminSurveys()
         .then((response) => {
-          this.albums = response.data;
+          this.surveys = response.data;
+          this.surveysLength = response.data.survey.length;
         })
         .catch((e) => {
           this.message = e.response.data.message;
@@ -88,5 +75,4 @@ export default {
 };
 </script>
 <style>
-
 </style>

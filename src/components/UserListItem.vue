@@ -1,7 +1,7 @@
 <template>
   <v-row class="user__list-item">
     <v-col cols="9" sm="2">
-      <span>{{ user.username }}</span>
+      <span>{{ user.user_name }}</span>
     </v-col>
     <v-col cols="9" sm="2">
       <span> {{ user.organization }}</span>

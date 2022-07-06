@@ -4,31 +4,14 @@
       <div class="register-wrapper">
         <div class="register-headings">
           <h1>Create Account For User</h1>
-          <h5>{{ message }}</h5>
+          <h5 class="error"  v-show="message">{{ message }}</h5>
         </div>
         <v-form class="register-form">
-          <v-text-field
-            v-model="registerForm.email"
-            label="Email*"
-          ></v-text-field>
-          <v-text-field
-            v-model="registerForm.userName"
-            label="User Name*"
-          ></v-text-field>
-          <v-text-field
-            v-model="registerForm.organization"
-            label="organization"
-          ></v-text-field>
-          <v-text-field
-            v-model="registerForm.password"
-            label="Password*"
-            type="password"
-          ></v-text-field>
-          <v-text-field
-            v-model="registerForm.confirmPassword"
-            label="Confirm Password*"
-            type="password"
-          ></v-text-field>
+          <v-text-field v-model="registerForm.email" label="Email*"></v-text-field>
+          <v-text-field v-model="registerForm.userName" label="User Name*"></v-text-field>
+          <v-text-field v-model="registerForm.organization" label="Organization"></v-text-field>
+          <v-text-field v-model="registerForm.password" label="Password*" type="password"></v-text-field>
+          <v-text-field v-model="registerForm.confirmPassword" label="Confirm Password*" type="password"></v-text-field>
           <button @click="handleRegister" class="black-button width-100">
             CREATE USER
           </button>
@@ -97,20 +80,23 @@ export default {
   place-items: center;
   position: relative;
 }
+
 .register-wrapper {
   backdrop-filter: blur(8px);
   color: var(--colorBlack);
-  width: 40%;
+  width: 50%;
   padding: 10px 30px 20px 30px;
   border-radius: 15px;
   border: 1px solid var(--colorLightGrey);
   box-shadow: 0px 10px 25px #2b2b2b7a;
 }
+
 .register-headings {
   margin: 15px 0;
   font-weight: 600;
   font-size: 18px;
 }
+
 .register-headings h1 {
   font-size: 25px;
   text-align: center;
@@ -118,10 +104,9 @@ export default {
   font-weight: 800;
 }
 
-.v-input__details {
-  display: none;
-}
-.v-input {
-  margin: 5px 0 !important;
+@media(max-width: 900px) {
+  .register-wrapper {
+    width: 90%;
+  }
 }
 </style>

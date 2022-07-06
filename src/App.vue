@@ -1,13 +1,7 @@
 <template>
   <v-app>
     <v-app-bar v-if="currentRoute !== '/login'">
-      <v-img
-        class="mx-2"
-        :src="logo"
-        max-height="40"
-        max-width="40"
-        contain
-      ></v-img>
+      <v-img class="mx-2" :src="logo" max-height="40" max-width="40" contain></v-img>
       <v-app-bar-title>Manage Surveys</v-app-bar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
@@ -24,6 +18,7 @@
 
 <script>
 import logo from "./assets/oc-logo-white.png";
+import AuthDataService from "./services/AuthDataService";
 export default {
   name: "App",
   data: () => ({
@@ -44,7 +39,13 @@ export default {
       this.$router.push({ name: "createSurvey" });
     },
     handleLogout() {
-      this.$router.push({ name: "login" });
+      const userId = sessionStorage.getItem("userId");
+      AuthDataService.logout(userId).then((response) => {
+        sessionStorage.removeItem("authToken");
+        sessionStorage.removeItem("userId");
+        sessionStorage.removeItem("userType");
+        this.$router.push({ name: "login" });
+      });
     },
   },
   created() {
@@ -96,9 +97,21 @@ body {
   min-height: 100vh;
   max-height: auto;
 }
+
 .width-100 {
   width: 100%;
 }
+
+.error {
+  color: orangered;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 16px;
+  padding: 6px;
+  background-color: var(--lightGrey);
+  border-radius: 5px;
+}
+
 .black-button {
   background: var(--colorBlack);
   border-radius: 15px;
@@ -107,6 +120,7 @@ body {
   color: var(--colorWhite);
   margin: 10px 0;
 }
+
 .black-button:hover {
   box-shadow: 0px 10px 25px #2b2b2b7a;
 }
@@ -128,10 +142,18 @@ body {
 .highlight__text {
   color: rgb(144, 144, 187);
 }
+
 .v-input__details {
   display: none;
 }
+
 .v-input {
-  margin: 5px 0;
+  margin: 10px 0 !important;
+}
+
+@media(max-width: 900px) {
+  .wrapper {
+    padding: 10% 40px 0 40px;
+  }
 }
 </style>

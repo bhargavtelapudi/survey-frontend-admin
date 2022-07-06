@@ -1,12 +1,12 @@
 import http from "../http-common";
-const accessToken = sessionStorage.getItem("token");
+const accessToken = sessionStorage.getItem("authToken");
 
 class UserDataService {
   createUser(userData) {
     return http.post(`/auth/register`, userData);
   }
   getAllUsers() {
-    return http.get("/user/alladmins",{
+    return http.get("/admin/userlist",{
       headers: {
         'x-access-token': accessToken
       }

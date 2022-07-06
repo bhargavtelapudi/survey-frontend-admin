@@ -1,13 +1,13 @@
 <template>
   <v-row class="user__list-item">
     <v-col cols="9" sm="2">
-      <span>{{ survey.title }}</span>
+      <span>{{ survey.survey_title }}</span>
     </v-col>
     <v-col cols="9" sm="2">
-      <span> {{ survey.description }}</span>
+      <span> {{ survey.survey_description }}</span>
     </v-col>
     <v-col cols="4" sm="2">
-      <span> {{ survey.createdBy }}</span>
+      <span> {{ survey.survey_isPublihsed ? 'Published':"UnPublished"}}</span>
     </v-col>
     <v-col cols="9" sm="1">
       <v-btn
