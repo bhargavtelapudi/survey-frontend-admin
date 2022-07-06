@@ -4,9 +4,14 @@
       <v-img class="mx-2" :src="logo" max-height="40" max-width="40" contain></v-img>
       <v-app-bar-title>Manage Surveys</v-app-bar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items>
+      <v-toolbar-items v-if="userType === 'admin'">
         <v-btn variant="text" @click="goToUsersList">Users List</v-btn>
         <v-btn variant="text" @click="goToRegisterAdmin">Register User</v-btn>
+        <v-btn variant="text" @click="goToSurevysList">Surveys List</v-btn>
+        <v-btn variant="text" @click="goToCreateSurvey">Create Survey</v-btn>
+        <button @click="handleLogout" class="black-button">LOGOUT</button>
+      </v-toolbar-items>
+      <v-toolbar-items v-else-if="userType === 'user'">
         <v-btn variant="text" @click="goToSurevysList">Surveys List</v-btn>
         <v-btn variant="text" @click="goToCreateSurvey">Create Survey</v-btn>
         <button @click="handleLogout" class="black-button">LOGOUT</button>
@@ -23,6 +28,7 @@ export default {
   name: "App",
   data: () => ({
     logo,
+    userType: "",
     currentRoute: "",
   }),
   methods: {
@@ -53,6 +59,8 @@ export default {
     const userType = sessionStorage.getItem("userType");
     if (isAuth && userType === "admin") {
       this.$router.push({ name: "usersList" });
+    } else if (isAuth && userType === "user") {
+      this.$router.push({ name: "surveysList" });
     } else {
       this.$router.push({ name: "login" });
     }
@@ -60,6 +68,7 @@ export default {
       () => this.$route.params,
       () => {
         this.currentRoute = this.$route.path;
+        this.userType = sessionStorage.getItem("userType");
       }
     );
   },
