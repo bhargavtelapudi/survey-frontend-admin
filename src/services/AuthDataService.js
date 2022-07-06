@@ -1,5 +1,4 @@
-import http from "../http-common";
-const accessToken = sessionStorage.getItem("authToken");
+import http from "../http-common"; 
 
 class AuthService {
   login(authData) {
@@ -8,7 +7,7 @@ class AuthService {
   logout(userId) {
     return http.get(`/auth/logout/${userId}`,{
       headers: {
-        'x-access-token': accessToken
+        'x-access-token': sessionStorage.getItem("authToken")
       }
     });
   }
