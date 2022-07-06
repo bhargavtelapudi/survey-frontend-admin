@@ -8,7 +8,7 @@
           <span>User Name</span>
         </v-col>
         <v-col cols="9" sm="2">
-          <span>organization</span>
+          <span>Organization</span>
         </v-col>
         <v-col cols="4" sm="2">
           <span>Email</span>
