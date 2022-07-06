@@ -94,7 +94,7 @@ export default {
   border-radius: 10px;
   display: flex;
   justify-content: center;
-  margin: 10px 0px 20px 0px;
+  margin: 20px 0px 20px 0px;
   box-shadow: var(--boxShadow);
   background: var(--colorWhite);
 }
