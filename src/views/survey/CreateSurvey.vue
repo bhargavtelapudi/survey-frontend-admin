@@ -25,7 +25,7 @@
   </div>
 </template>
 <script>
-import AdminDataService from "../../services/AdminDataService";
+import SurveyDataService from "../../services/SurveyDataService";
 export default {
   name: "create-survey",
   data() {
@@ -49,7 +49,7 @@ export default {
         description: this.survey.description,
         isPublished: this.survey.isPublished,
       }
-      AdminDataService.createSurvey(surveyData)
+      SurveyDataService.createSurvey(surveyData)
         .then((response) => {
           if (response.status === 200) {
             this.$router.push({ name: "surveysList" });

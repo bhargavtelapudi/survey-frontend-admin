@@ -63,8 +63,8 @@ export default {
     UserListItem,
   },
   methods: {
-    goView(album) {
-      this.$router.push({ name: "view", params: { id: album.id } });
+    goView(user) {
+      this.$router.push({ name: "userSurveysList", params: { id: user.id } });
     },
     goDelete(album) {
       UserDataService.delete(album.id)
