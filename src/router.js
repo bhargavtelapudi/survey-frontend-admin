@@ -19,12 +19,17 @@ const routes = [
   {
     name: 'surveysList',
     path: '/surveys',
-    component: () => import('./views/admin/SurveysList.vue')
+    component: () => import('./views/survey/SurveysList.vue')
+  },
+  {
+    name: 'userSurveysList',
+    path: '/surveys/user/:id',
+    component: () => import('./views/user/ViewUserSurveys.vue')
   },
   {
     name: 'createSurvey',
     path: '/create-survey',
-    component: () => import('./views/admin/CreateSurvey.vue')
+    component: () => import('./views/survey/CreateSurvey.vue')
   }
 ];
 const router = createRouter({

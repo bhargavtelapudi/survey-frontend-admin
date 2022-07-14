@@ -1,6 +1,6 @@
 import http from "../http-common";
 
-class AdminDataService {
+class SurveyDataService {
   getAllAdminSurveys() {
     return http.get("/survey/list", {
       headers: {
@@ -23,4 +23,4 @@ class AdminDataService {
     });
   }
 }
-export default new AdminDataService();
+export default new SurveyDataService();
