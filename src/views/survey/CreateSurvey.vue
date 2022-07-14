@@ -8,7 +8,7 @@
       <v-text-field label="Title" v-model="survey.title" :rules="[rules.required]" />
       <v-text-field label="Description" v-model="survey.description" :rules="[rules.required]" />
       <v-switch :label="`${survey.isPublished ? 'UnPublish Survey' : 'Publish Survey'}`" v-model="survey.isPublished"
-        color="indigo darken-3"></v-switch>
+        color="success"></v-switch>
       <!-- <v-btn color="success">Add Questions For Survey</v-btn> -->
 
       <h1>ADD QUESTIONS TO SURVEY</h1>
@@ -45,7 +45,7 @@
               </div>
             </div>
             <div class="survey__question--bottom">
-              <v-switch label="Required" v-model="question.required" color="red darken-3" class="required__switch">
+              <v-switch label="Required" v-model="question.required" color="orange" class="required__switch">
               </v-switch>
               <v-icon large color="red" class="icon actions__icon" @click="handleDeleteQuestion(index)">
                 mdi-delete-outline
