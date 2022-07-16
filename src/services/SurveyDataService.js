@@ -8,6 +8,13 @@ class SurveyDataService {
       }
     });
   }
+  getSurvey() {
+    return http.get(`/survey/${id}`, {
+      headers: {
+        'x-access-token': sessionStorage.getItem("authToken")
+      }
+    });
+  }
   createSurvey(surveyData) {
     return http.post("/create/survey", surveyData, {
       headers: {

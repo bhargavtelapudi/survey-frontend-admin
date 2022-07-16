@@ -62,8 +62,8 @@ export default {
     SurveyListItem,
   },
   methods: {
-    goView(album) {
-      this.$router.push({ name: "view", params: { id: album.id } });
+    goView(id) {
+      this.$router.push({ name: "viewSurvey", params: { id } });
     },
     goDelete(id) {
       SurveyDataService.deleteSurvey(id)

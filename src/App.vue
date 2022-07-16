@@ -24,6 +24,7 @@
 <script>
 import logo from "./assets/oc-logo-white.png";
 import AuthDataService from "./services/AuthDataService";
+import './accordian.css';
 export default {
   name: "App",
   data: () => ({
@@ -101,7 +102,7 @@ body {
 }
 
 .wrapper {
-  padding: 5% 40px 0 40px;
+  padding: 80px 40px 0 40px;
   background: #eae9e9;
   min-height: 100vh;
   max-height: auto;
