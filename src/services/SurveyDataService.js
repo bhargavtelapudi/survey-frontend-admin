@@ -8,7 +8,7 @@ class SurveyDataService {
       }
     });
   }
-  getSurvey() {
+  getSurvey(id) {
     return http.get(`/survey/${id}`, {
       headers: {
         'x-access-token': sessionStorage.getItem("authToken")
@@ -24,6 +24,13 @@ class SurveyDataService {
   }
   deleteSurvey(id) {
     return http.delete(`/survey/${id}`, {
+      headers: {
+        'x-access-token': sessionStorage.getItem("authToken")
+      }
+    });
+  }
+  publishSurvey(surveyData) {
+    return http.put(`/survey/${surveyData.id}`, surveyData, {
       headers: {
         'x-access-token': sessionStorage.getItem("authToken")
       }
