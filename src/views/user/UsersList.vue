@@ -37,7 +37,7 @@
       class="highlight__text"
       style="text-align: center"
     >
-      NO users FOUND
+      NO USERS FOUND
     </h2>
   </div>
 </template>

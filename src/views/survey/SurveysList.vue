@@ -22,12 +22,21 @@
           <span>Delete</span>
         </v-col>
         <div class="album__item--wrapper">
-          <SurveyListItem v-for="survey in surveys.survey" :key="survey.id" :survey="survey"
-            @deleteSurvey="goDelete(survey.id)" @viewSurvey="goView(survey.id)" />
+          <SurveyListItem
+            v-for="survey in surveys.survey"
+            :key="survey.id"
+            :survey="survey"
+            @deleteSurvey="goDelete(survey.id)"
+            @viewSurvey="goView(survey.id)"
+          />
         </div>
       </v-row>
     </div>
-    <h2 v-show="surveysLength < 1" class="highlight__text" style="text-align: center">
+    <h2
+      v-show="surveysLength < 1"
+      class="highlight__text"
+      style="text-align: center"
+    >
       NO SURVEYS FOUND
     </h2>
   </div>
@@ -39,8 +48,17 @@ export default {
   name: "surveys-list",
   data() {
     return {
-      surveys: {},
-      surveysLength: 0,
+      surveys: {
+        survey: [
+          {
+            id: 1,
+            survey_title: "test survey",
+            survey_description: "test description",
+            survey_isPublihsed: false,
+          },
+        ],
+      },
+      surveysLength: 1,
       message: "View or Delete Surveys",
     };
   },
@@ -48,8 +66,8 @@ export default {
     SurveyListItem,
   },
   methods: {
-    goView(album) {
-      this.$router.push({ name: "view", params: { id: album.id } });
+    goView(id) {
+      this.$router.push({ name: "viewSurvey", params: { id } });
     },
     goDelete(id) {
       SurveyDataService.deleteSurvey(id)
@@ -72,7 +90,7 @@ export default {
     },
   },
   mounted() {
-    this.retreiveSurveys();
+    // this.retreiveSurveys();
   },
 };
 </script>
