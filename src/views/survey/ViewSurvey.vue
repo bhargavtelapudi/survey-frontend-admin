@@ -7,7 +7,7 @@
         Survey Description : {{ survey.survey_description }}
       </h4>
       <h4 class="highlight__text">
-        Survey Status : {{ survey.survey_isPublihsed }}
+        Survey Status : {{ survey.survey_isPublished }}
       </h4>
     </div>
     <ul
@@ -46,7 +46,7 @@ export default {
         id: 1,
         survey_title: "test survey",
         survey_description: "test description",
-        survey_isPublihsed: false,
+        survey_isPublished: false,
         survey_questions: [
           {
             title: "What is astronomy",

@@ -33,8 +33,9 @@ const routes = [
   },
   {
     name: 'viewSurvey',
-    path: '/view-survey/:id',
-    component: () => import('./views/survey/viewSurvey.vue')
+    path: '/survey/view/:id',
+    component: () => import('./views/survey/ViewSurvey.vue'),
+    props: true
   }
 ];
 const router = createRouter({

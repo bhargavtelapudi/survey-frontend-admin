@@ -28,6 +28,7 @@
             :survey="survey"
             @deleteSurvey="goDelete(survey.id)"
             @viewSurvey="goView(survey.id)"
+            @handlePublish="handlePublish(survey)"
           />
         </div>
       </v-row>
@@ -54,7 +55,7 @@ export default {
             id: 1,
             survey_title: "test survey",
             survey_description: "test description",
-            survey_isPublihsed: false,
+            survey_isPublished: false,
           },
         ],
       },
@@ -71,6 +72,20 @@ export default {
     },
     goDelete(id) {
       SurveyDataService.deleteSurvey(id)
+        .then(() => {
+          this.retreiveSurveys();
+        })
+        .catch((e) => {
+          this.message = e.response.data.message;
+        });
+    },
+    handlePublish(survey) {
+      const surveyData = {
+        id: survey.id,
+        survey_isPublished: survey.survey_isPublished,
+      };
+      console.log("surveyData",surveyData);
+      SurveyDataService.publishSurvey(surveyData)
         .then(() => {
           this.retreiveSurveys();
         })
