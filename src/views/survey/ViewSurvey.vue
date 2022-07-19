@@ -12,21 +12,22 @@
     </div>
     <ul
       class="accordian"
-      v-for="question in survey.survey_questions"
+      v-for="question in survey.questions"
       :key="question.id"
-      v-if="survey.survey_questions.length > 0"
+      v-if="survey.questions.length > 0"
     >
       <li class="accordian__item">
         <input type="checkbox" checked />
         <i></i>
         <h2>{{ question.title }}</h2>
+
         <p>
           {{ question.response || "QUESTION RESPONSE" }}
         </p>
       </li>
     </ul>
     <h2
-      v-if="survey.survey_questions.length < 1"
+      v-if="survey.questions.length < 1"
       class="highlight__text"
       style="text-align: center"
     >
@@ -47,7 +48,7 @@ export default {
         survey_title: "test survey",
         survey_description: "test description",
         survey_isPublished: false,
-        survey_questions: [
+        questions: [
           {
             title: "What is astronomy",
           },
@@ -59,7 +60,6 @@ export default {
           },
         ],
       },
-      surveysLength: 1,
       message: "View survey details and questions",
     };
   },

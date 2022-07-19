@@ -1,7 +1,7 @@
 import http from "../http-common";
 
 class SurveyDataService {
-  getAllAdminSurveys() {
+  getAllSurveys() {
     return http.get("/survey/list", {
       headers: {
         'x-access-token': sessionStorage.getItem("authToken")
@@ -30,7 +30,7 @@ class SurveyDataService {
     });
   }
   publishSurvey(surveyData) {
-    return http.put(`/survey/${surveyData.id}`, surveyData, {
+    return http.put(`/survey/${surveyData.id}?isPublish=${surveyData.isPublished}`, {
       headers: {
         'x-access-token': sessionStorage.getItem("authToken")
       }

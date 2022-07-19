@@ -23,7 +23,7 @@
         </v-col>
         <div class="album__item--wrapper">
           <SurveyListItem
-            v-for="survey in surveys.survey"
+            v-for="survey in surveys"
             :key="survey.id"
             :survey="survey"
             @deleteSurvey="goDelete(survey.id)"
@@ -49,17 +49,8 @@ export default {
   name: "surveys-list",
   data() {
     return {
-      surveys: {
-        survey: [
-          {
-            id: 1,
-            survey_title: "test survey",
-            survey_description: "test description",
-            survey_isPublished: false,
-          },
-        ],
-      },
-      surveysLength: 1,
+      surveys: [],
+      surveysLength: null,
       message: "View or Delete Surveys",
     };
   },
@@ -82,9 +73,8 @@ export default {
     handlePublish(survey) {
       const surveyData = {
         id: survey.id,
-        survey_isPublished: survey.survey_isPublished,
+        isPublished: survey.survey_isPublished,
       };
-      console.log("surveyData",surveyData);
       SurveyDataService.publishSurvey(surveyData)
         .then(() => {
           this.retreiveSurveys();
@@ -94,10 +84,10 @@ export default {
         });
     },
     retreiveSurveys() {
-      SurveyDataService.getAllAdminSurveys()
+      SurveyDataService.getAllSurveys()
         .then((response) => {
           this.surveys = response.data;
-          this.surveysLength = response.data.survey.length;
+          this.surveysLength = response.data.length;
         })
         .catch((e) => {
           this.message = e.response.data.message;
@@ -105,7 +95,7 @@ export default {
     },
   },
   mounted() {
-    // this.retreiveSurveys();
+    this.retreiveSurveys();
   },
 };
 </script>

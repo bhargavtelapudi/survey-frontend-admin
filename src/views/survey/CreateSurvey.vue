@@ -5,49 +5,108 @@
       <h4 class="highlight__text">{{ message }}</h4>
     </div>
     <v-form class="form" @submit="createSurvey">
-      <v-text-field label="Title" v-model="survey.title" :rules="[rules.required]" />
-      <v-text-field label="Description" v-model="survey.description" :rules="[rules.required]" />
-      <v-switch :label="`${survey.isPublished ? 'UnPublish Survey' : 'Publish Survey'}`" v-model="survey.isPublished"
-        color="success"></v-switch>
+      <v-text-field
+        label="Title"
+        v-model="survey.title"
+        :rules="[rules.required]"
+      />
+      <v-text-field
+        label="Description"
+        v-model="survey.description"
+        :rules="[rules.required]"
+      />
+      <v-switch
+        :label="`${survey.isPublished ? 'UnPublish Survey' : 'Publish Survey'}`"
+        v-model="survey.isPublished"
+        color="success"
+      ></v-switch>
       <!-- <v-btn color="success">Add Questions For Survey</v-btn> -->
 
       <h1>ADD QUESTIONS TO SURVEY</h1>
       <div class="survey__questions--wrapper">
         <div class="add__question">
-          <v-select :items="survey.questionOptions" v-model="survey.questionType" :rules="[rules.required]"
-            label="Select Question Type"></v-select>
-          <v-icon large color="blue" @click="handleAddQuestion" class="survey__icon align__icon icon">mdi-plus</v-icon>
+          <v-select
+            :items="survey.questionOptions"
+            v-model="survey.questionType"
+            :rules="[rules.required]"
+            label="Select Question Type"
+          ></v-select>
+          <v-icon
+            large
+            color="blue"
+            @click="handleAddQuestion"
+            class="survey__icon align__icon icon"
+            >mdi-plus</v-icon
+          >
         </div>
         <div class="survey__question--wrapper">
-          <div class="survey__question" v-for="(question, index) in survey.questions" :key="index">
+          <div
+            class="survey__question"
+            v-for="(question, index) in survey.questions"
+            :key="index"
+          >
             <div class="survey__question--heading">
               <h3>
                 Question Type - {{ question.question_type.toUpperCase() }}
               </h3>
               <h4>Question No - {{ index + 1 }}</h4>
             </div>
-            <v-text-field v-model="question.title" label="Enter your question" :rules="[rules.required]">
+            <v-text-field
+              v-model="question.title"
+              label="Enter your question"
+              :rules="[rules.required]"
+            >
             </v-text-field>
             <!-- MULTIPLE CHOICE QUESTION-->
             <div v-if="question.question_type === 'multiple-choice'">
               <h5>
                 ADD OPTION (max 4*)
-                <v-icon large color="blue" @click="handleAddOption(index)" class="icon survey__icon">mdi-plus</v-icon>
+                <v-icon
+                  large
+                  color="blue"
+                  @click="handleAddOption(index)"
+                  class="icon survey__icon"
+                  >mdi-plus</v-icon
+                >
               </h5>
-              <div class="survey__question--options" v-for="(item, optionIndex) in question.options" :key="optionIndex">
+              <div
+                class="survey__question--options"
+                v-for="(item, optionIndex) in question.options"
+                :key="optionIndex"
+              >
                 <div class="survey__question--option">
-                  <v-text-field v-model="item.option" :label="`Option ${optionIndex + 1}`" :rules="[rules.required]">
+                  <v-text-field
+                    v-model="item.option"
+                    :label="`Option ${optionIndex + 1}`"
+                    :rules="[rules.required]"
+                  >
                   </v-text-field>
-                  <v-icon large color="red" @click="handleDeleteOption(index, optionIndex)" v-show="optionIndex !== 0"
-                    class="icon survey__icon del__icon">
-                    mdi-minus</v-icon>
+                  <v-icon
+                    large
+                    color="red"
+                    @click="handleDeleteOption(index, optionIndex)"
+                    v-show="optionIndex !== 0"
+                    class="icon survey__icon del__icon"
+                  >
+                    mdi-minus</v-icon
+                  >
                 </div>
               </div>
             </div>
             <div class="survey__question--bottom">
-              <v-switch label="Required" v-model="question.required" color="orange" class="required__switch">
+              <v-switch
+                label="Required"
+                v-model="question.required"
+                color="orange"
+                class="required__switch"
+              >
               </v-switch>
-              <v-icon large color="red" class="icon actions__icon" @click="handleDeleteQuestion(index)">
+              <v-icon
+                large
+                color="red"
+                class="icon actions__icon"
+                @click="handleDeleteQuestion(index)"
+              >
                 mdi-delete-outline
               </v-icon>
             </div>
@@ -56,7 +115,6 @@
       </div>
       <v-row justify="space-around">
         <v-btn color="success" type="submit">Create Survey</v-btn>
-        <v-btn color="info" @click="cancel()">Cancel</v-btn>
       </v-row>
     </v-form>
   </div>
@@ -73,11 +131,16 @@ export default {
         questions: [],
         isPublished: false,
         questionType: "",
-        questionOptions: ["text-box", "multiple-choice", "rating", "paragraph"],
+        questionOptions: [
+          "text-field",
+          "multiple-choice",
+          "rating",
+          "paragraph",
+        ],
       },
       message: "Create Survey , Add Questions",
       rules: {
-        required: value => !!value || 'Field Required.',
+        required: (value) => !!value || "Field Required.",
       },
     };
   },
@@ -87,13 +150,13 @@ export default {
         title: "",
         question_type: questionType,
         required: false,
-      }
+      };
     },
     handleAddQuestion() {
       let questions = [...this.survey.questions];
       switch (this.survey.questionType) {
-        case "text-box":
-          questions = [...questions, this.formQuestionObject("text-box")];
+        case "text-field":
+          questions = [...questions, this.formQuestionObject("text-field")];
           break;
         case "paragraph":
           questions = [...questions, this.formQuestionObject("paragraph")];
@@ -146,21 +209,17 @@ export default {
         title: this.survey.title,
         description: this.survey.description,
         isPublished: this.survey.isPublished,
-        questions: this.survey.questions
-      }
-      console.log("final api data??", surveyData);
-      // SurveyDataService.createSurvey(surveyData)
-      //   .then((response) => {
-      //     if (response.status === 200) {
-      //       this.$router.push({ name: "surveysList" });
-      //     }
-      //   })
-      //   .catch((e) => {
-      //     this.message = e.response.data.message;
-      //   });
-    },
-    cancel() {
-      this.$router.push({ name: "usersList" });
+        questions: this.survey.questions,
+      };
+      SurveyDataService.createSurvey(surveyData)
+        .then((response) => {
+          if (response.status === 200) {
+            this.$router.push({ name: "surveysList" });
+          }
+        })
+        .catch((e) => {
+          this.message = e.response.data.message;
+        });
     },
   },
 };
