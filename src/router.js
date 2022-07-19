@@ -24,7 +24,8 @@ const routes = [
   {
     name: 'userSurveysList',
     path: '/surveys/user/:id',
-    component: () => import('./views/user/ViewUserSurveys.vue')
+    component: () => import('./views/user/ViewUserSurveys.vue'),
+    props: true
   },
   {
     name: 'createSurvey',

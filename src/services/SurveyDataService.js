@@ -8,6 +8,13 @@ class SurveyDataService {
       }
     });
   }
+  getUserSurveys(userId) {
+    return http.get(`/survey/list?user=${userId}`, {
+      headers: {
+        'x-access-token': sessionStorage.getItem("authToken")
+      }
+    });
+  }
   getSurvey(id) {
     return http.get(`/survey/${id}`, {
       headers: {
@@ -30,7 +37,7 @@ class SurveyDataService {
     });
   }
   publishSurvey(surveyData) {
-    return http.put(`/survey/${surveyData.id}?isPublish=${surveyData.isPublished}`, {
+    return http.put(`/survey/${surveyData.id}?isPublished=${surveyData.isPublished}`, {}, {
       headers: {
         'x-access-token': sessionStorage.getItem("authToken")
       }
