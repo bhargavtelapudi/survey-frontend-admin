@@ -2,8 +2,12 @@
   <div class="wrapper">
     <div class="register-headings">
       <h1>Manage User Info</h1>
-      <h4>User Name : Test</h4>
-      <h4>Email : Test</h4>
+      <h4 class="highlight__text">
+        <strong style="color:#202020">User Name :</strong> {{ userInfo.username }}
+      </h4>
+      <h4 class="highlight__text">
+        <strong style="color:#202020">Organization :</strong> {{ userInfo.organization }}
+      </h4>
     </div>
     <div>
       <h1 class="highlight__text">{{ message }}</h1>
@@ -25,22 +29,13 @@
             <span>Delete</span>
           </v-col>
           <div class="album__item--wrapper">
-            <SurveyListItem
-              v-for="survey in surveys"
-              :key="survey.id"
-              :survey="survey"
-              @deleteSurvey="goDelete(survey.id)"
-              @viewSurvey="goView(survey.id)"
-              @handlePublish="handlePublish(survey)"
-            />
+            <SurveyListItem v-for="survey in surveys" :key="survey.id" :survey="survey"
+              @deleteSurvey="goDelete(survey.id)" @viewSurvey="goView(survey.id)"
+              @handlePublish="handlePublish(survey)" />
           </div>
         </v-row>
       </div>
-      <h2
-        v-show="surveysLength < 1"
-        class="highlight__text"
-        style="text-align: center"
-      >
+      <h2 v-show="surveysLength < 1" class="highlight__text" style="text-align: center">
         NO SURVEYS FOUND
       </h2>
     </div>
@@ -51,9 +46,11 @@ import SurveyDataService from "../../services/SurveyDataService";
 import SurveyListItem from "@/components/SurveyListItem.vue";
 export default {
   name: "surveys-list",
+  props: ["id"],
   data() {
     return {
       surveys: [],
+      userInfo: {},
       surveysLength: 0,
       message: "Manage User Surveys",
       userInfo: "",
@@ -80,7 +77,6 @@ export default {
         id: survey.id,
         isPublished: survey.survey_isPublished,
       };
-      console.log(surveyData);
       SurveyDataService.publishSurvey(surveyData)
         .then(() => {
           this.retreiveSurveys();
@@ -90,10 +86,11 @@ export default {
         });
     },
     retreiveSurveys() {
-      SurveyDataService.getAllSurveys()
+      SurveyDataService.getUserSurveys(this.id)
         .then((response) => {
-          this.surveys = response.data;
-          this.surveysLength = response.data.length;
+          this.surveys = response.data.survey_list;
+          this.userInfo = response.data.user;
+          this.surveysLength = response.data.survey_list.length;
         })
         .catch((e) => {
           this.message = e.response.data.message;
