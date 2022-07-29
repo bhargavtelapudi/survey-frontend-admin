@@ -1,7 +1,13 @@
 <template>
   <v-app>
     <v-app-bar v-if="currentRoute !== '/login'">
-      <v-img class="mx-2" :src="logo" max-height="40" max-width="40" contain></v-img>
+      <v-img
+        class="mx-2"
+        :src="logo"
+        max-height="40"
+        max-width="40"
+        contain
+      ></v-img>
       <v-app-bar-title>Manage Surveys</v-app-bar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items v-if="userType === 'admin'">
@@ -24,7 +30,7 @@
 <script>
 import logo from "./assets/oc-logo-white.png";
 import AuthDataService from "./services/AuthDataService";
-import './accordian.css';
+import "./accordian.css";
 export default {
   name: "App",
   data: () => ({
@@ -199,7 +205,25 @@ h6 {
   width: 100%;
 }
 
-@media(max-width: 900px) {
+.survey__question {
+  display: flex;
+  flex-direction: column;
+  border-left: 5px solid rgb(190, 201, 94);
+  margin: 15px 0;
+  padding: 10px 10px 5px 10px;
+  box-shadow: 0px 20px 30px #33323241;
+  border-radius: 5px;
+}
+
+.survey__question--heading {
+  background: #e9e6e6;
+  padding: 5px;
+  text-align: center;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 900px) {
   .wrapper {
     padding: 10% 40px 0 40px;
   }
