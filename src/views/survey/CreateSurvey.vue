@@ -250,24 +250,6 @@ export default {
   gap: 20px;
 }
 
-.survey__question {
-  display: flex;
-  flex-direction: column;
-  border-left: 5px solid rgb(190, 201, 94);
-  margin: 15px 0;
-  padding: 10px 10px 5px 10px;
-  box-shadow: 0px 20px 30px #33323241;
-  border-radius: 5px;
-}
-
-.survey__question--heading {
-  background: #e9e6e6;
-  padding: 5px;
-  text-align: center;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
 .survey__question--bottom {
   display: flex;
   justify-content: flex-end;

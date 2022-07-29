@@ -43,5 +43,12 @@ class SurveyDataService {
       }
     });
   }
+  sendSurveyLink(linkData) {
+    return http.post(`/survey/sendemail`, linkData, {
+      headers: {
+        'x-access-token': sessionStorage.getItem("authToken")
+      }
+    });
+  }
 }
 export default new SurveyDataService();
