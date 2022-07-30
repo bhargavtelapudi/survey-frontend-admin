@@ -11,5 +11,12 @@ class UserDataService {
       }
     });
   }
+  deleteUser(userId) {
+    return http.delete(`/admin/deleteuser/${userId}`, {
+      headers: {
+        'x-access-token': sessionStorage.getItem("authToken")
+      }
+    });
+  }
 }
 export default new UserDataService();
