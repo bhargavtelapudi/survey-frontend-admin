@@ -26,7 +26,7 @@
             v-for="user in users"
             :key="user.id"
             :user="user"
-            @deleteUser="goDelete(user)"
+            @deleteUser="deleteUser(user.id)"
             @viewUser="goView(user)"
           />
         </div>
@@ -66,8 +66,8 @@ export default {
     goView(user) {
       this.$router.push({ name: "userSurveysList", params: { id: user.id } });
     },
-    goDelete(album) {
-      UserDataService.delete(album.id)
+    deleteUser(id) {
+      UserDataService.deleteUser(id)
         .then(() => {
           this.retreiveUsers();
         })
