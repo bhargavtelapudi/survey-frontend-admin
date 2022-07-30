@@ -22,6 +22,9 @@
       />
     </v-col>
     <v-col cols="9" sm="1">
+      <v-btn size="x-small" icon="mdi-pencil" @click="editSurvey" />
+    </v-col>
+    <v-col cols="9" sm="1">
       <v-btn size="x-small" icon="mdi-trash-can" @click="deleteSurvey" />
     </v-col>
   </v-row>
@@ -40,6 +43,9 @@ export default {
     },
     viewSurvey() {
       this.$emit("viewSurvey");
+    },
+    editSurvey() {
+      this.$emit("editSurvey");
     },
     handlePublish() {
       this.$emit("handlePublish");

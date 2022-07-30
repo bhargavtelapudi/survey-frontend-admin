@@ -19,6 +19,9 @@
           <span>View</span>
         </v-col>
         <v-col cols="9" sm="1">
+          <span>Edit</span>
+        </v-col>
+        <v-col cols="9" sm="1">
           <span>Delete</span>
         </v-col>
         <div class="album__item--wrapper">
@@ -28,6 +31,7 @@
             :survey="survey"
             @deleteSurvey="goDelete(survey.id)"
             @viewSurvey="goView(survey.id)"
+            @editSurvey="goEdit(survey.id)"
             @handlePublish="handlePublish(survey)"
           />
         </div>
@@ -60,6 +64,9 @@ export default {
   methods: {
     goView(id) {
       this.$router.push({ name: "viewSurvey", params: { id } });
+    },
+    goEdit(id) {
+      this.$router.push({ name: "editSurvey", params: { surveyId: id } });
     },
     goDelete(id) {
       SurveyDataService.deleteSurvey(id)
