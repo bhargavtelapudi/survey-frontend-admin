@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="register-headings">
-      <h1>CREATE SURVEY</h1>
+      <h1>{{ surveyId ? "EDIT" : "CREATE" }} SURVEY</h1>
       <h4 class="highlight__text">{{ message }}</h4>
     </div>
     <v-form class="form" @submit="createSurvey">
@@ -20,7 +20,6 @@
         v-model="survey.isPublished"
         color="success"
       ></v-switch>
-      <!-- <v-btn color="success">Add Questions For Survey</v-btn> -->
 
       <h1>ADD QUESTIONS TO SURVEY</h1>
       <div class="survey__questions--wrapper">
@@ -31,12 +30,8 @@
             :rules="[rules.required]"
             label="Select Question Type"
           ></v-select>
-          <v-icon
-            large
-            color="blue"
-            @click="handleAddQuestion"
-            class="survey__icon align__icon icon"
-            >mdi-plus</v-icon
+          <v-btn color="success" class="align__icon" @click="handleAddQuestion"
+            >ADD</v-btn
           >
         </div>
         <div class="survey__question--wrapper">
@@ -61,12 +56,10 @@
             <div v-if="question.question_type === 'multiple-choice'">
               <h5>
                 ADD OPTION (max 4*)
-                <v-icon
-                  large
+                <v-btn
                   color="blue"
                   @click="handleAddOption(index)"
-                  class="icon survey__icon"
-                  >mdi-plus</v-icon
+                  >ADD OPTION</v-btn
                 >
               </h5>
               <div
@@ -114,7 +107,9 @@
         </div>
       </div>
       <v-row justify="space-around">
-        <v-btn color="success" type="submit">Create Survey</v-btn>
+        <v-btn color="success" type="submit"
+          >{{ surveyId ? "EDIT" : "CREATE" }} SURVEY</v-btn
+        >
       </v-row>
     </v-form>
   </div>
@@ -123,6 +118,7 @@
 import SurveyDataService from "../../services/SurveyDataService";
 export default {
   name: "create-survey",
+  props: ["surveyId"],
   data() {
     return {
       survey: {
@@ -138,7 +134,7 @@ export default {
           "paragraph",
         ],
       },
-      message: "Create Survey , Add Questions",
+      message: "",
       rules: {
         required: (value) => !!value || "Field Required.",
       },
@@ -211,16 +207,62 @@ export default {
         isPublished: this.survey.isPublished,
         questions: this.survey.questions,
       };
-      SurveyDataService.createSurvey(surveyData)
+      // console.log("surveyData???", surveyData);
+      // console.log("surveyId", this.surveyId);
+      if (this.surveyId) {
+        console.log("coming here 1");
+        SurveyDataService.editSurvey(surveyData, this.surveyId)
+          .then((response) => {
+            if (response.status === 200) {
+              this.$router.push({ name: "surveysList" });
+            }
+          })
+          .catch((e) => {
+            this.message = e.response.data.message;
+          });
+      } else {
+        console.log("coming here 2");
+        SurveyDataService.createSurvey(surveyData)
+          .then((response) => {
+            if (response.status === 200) {
+              this.$router.push({ name: "surveysList" });
+            }
+          })
+          .catch((e) => {
+            this.message = e.response.data.message;
+          });
+      }
+    },
+    retreiveSurvey() {
+      SurveyDataService.getSurvey(this.surveyId)
         .then((response) => {
-          if (response.status === 200) {
-            this.$router.push({ name: "surveysList" });
-          }
+          const apiRes = response.data;
+          this.survey.title = apiRes.survey_title;
+          this.survey.description = apiRes.survey_description;
+          this.survey.isPublished = apiRes.survey_isPublished;
+          this.survey.questions = apiRes.questions;
+          this.survey.questionType = "text-field";
+          console.log("response", apiRes);
         })
         .catch((e) => {
           this.message = e.response.data.message;
         });
     },
+  },
+  mounted() {
+    if (this.surveyId) {
+      this.retreiveSurvey();
+    }
+    this.$watch(
+      () => this.$route.params,
+      () => {
+        this.survey.title = "";
+        this.survey.description = "";
+        this.survey.isPublished = false;
+        this.survey.questions = [];
+        this.survey.questionType = "";
+      }
+    );
   },
 };
 </script>
@@ -289,5 +331,14 @@ export default {
 
 .align__icon {
   margin: -25px 0px 0 20px;
+}
+
+@media screen and (max-width: 850px) {
+  .add__question {
+    width: 90%;
+  }
+  .survey__question--wrapper {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

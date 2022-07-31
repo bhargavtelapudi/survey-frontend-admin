@@ -29,6 +29,13 @@ class SurveyDataService {
       }
     });
   }
+  editSurvey(surveyData, surveyId) {
+    return http.put(`/survey/${surveyId}`, surveyData, {
+      headers: {
+        'x-access-token': sessionStorage.getItem("authToken")
+      }
+    });
+  }
   deleteSurvey(id) {
     return http.delete(`/survey/${id}`, {
       headers: {

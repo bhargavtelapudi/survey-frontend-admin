@@ -33,6 +33,12 @@ const routes = [
     component: () => import('./views/survey/CreateSurvey.vue')
   },
   {
+    name: 'editSurvey',
+    path: '/edit-survey/:surveyId',
+    component: () => import('./views/survey/CreateSurvey.vue'),
+    props: true
+  },
+  {
     name: 'viewSurvey',
     path: '/survey/view/:id',
     component: () => import('./views/survey/ViewSurvey.vue'),
