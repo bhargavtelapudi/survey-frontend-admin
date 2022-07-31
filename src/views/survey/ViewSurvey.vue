@@ -47,7 +47,17 @@
             <span>{{ item.option }}</span>
           </div>
         </div>
-        {{ question.response || "QUESTION RESPONSE" }}
+         <section v-if="question.surveyresponse && question.surveyresponse.length > 0">
+          <div v-for="item in question.surveyresponse" :key="item.id">
+            <span class="viewSurvey__choice response">
+              {{ `PARTICIPANT EMAIL ID  : ${item.participant.email_id} ---  RESPONSE : ${item.response}`}}
+              </span>
+          </div>
+        </section>
+        <span
+          v-if="question.surveyresponse && question.surveyresponse.length <= 0" class="highlight__text" style="text-align: center"
+          >NO RESPONSES FOUND</span
+        >
         </p>
       </li>
     </ul>

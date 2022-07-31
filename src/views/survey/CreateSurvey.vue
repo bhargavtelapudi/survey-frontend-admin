@@ -20,7 +20,6 @@
         v-model="survey.isPublished"
         color="success"
       ></v-switch>
-      <!-- <v-btn color="success">Add Questions For Survey</v-btn> -->
 
       <h1>ADD QUESTIONS TO SURVEY</h1>
       <div class="survey__questions--wrapper">
@@ -31,12 +30,8 @@
             :rules="[rules.required]"
             label="Select Question Type"
           ></v-select>
-          <v-icon
-            large
-            color="blue"
-            @click="handleAddQuestion"
-            class="survey__icon align__icon icon"
-            >mdi-plus</v-icon
+          <v-btn color="success" class="align__icon" @click="handleAddQuestion"
+            >ADD</v-btn
           >
         </div>
         <div class="survey__question--wrapper">
@@ -61,12 +56,10 @@
             <div v-if="question.question_type === 'multiple-choice'">
               <h5>
                 ADD OPTION (max 4*)
-                <v-icon
-                  large
+                <v-btn
                   color="blue"
                   @click="handleAddOption(index)"
-                  class="icon survey__icon"
-                  >mdi-plus</v-icon
+                  >ADD OPTION</v-btn
                 >
               </h5>
               <div
@@ -214,8 +207,8 @@ export default {
         isPublished: this.survey.isPublished,
         questions: this.survey.questions,
       };
-      console.log("surveyData???", surveyData);
-      console.log("surveyId", this.surveyId);
+      // console.log("surveyData???", surveyData);
+      // console.log("surveyId", this.surveyId);
       if (this.surveyId) {
         console.log("coming here 1");
         SurveyDataService.editSurvey(surveyData, this.surveyId)
@@ -338,5 +331,14 @@ export default {
 
 .align__icon {
   margin: -25px 0px 0 20px;
+}
+
+@media screen and (max-width: 850px) {
+  .add__question {
+    width: 90%;
+  }
+  .survey__question--wrapper {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
