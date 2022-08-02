@@ -16,6 +16,7 @@
       >SEND SURVEY LINK<v-icon right>mdi-share</v-icon>
       </v-btn
     >
+    <DownloadSurveyReport :exportFileData="exportFileData" />
     </div>
       <div class="share__link">
     <v-form class="survey__question" v-if="openShareLink === true" @submit="sendSurveyLink">
@@ -69,13 +70,19 @@
 <script>
 import SurveyDataService from "../../services/SurveyDataService";
 import SurveyListItem from "@/components/SurveyListItem.vue";
+import DownloadSurveyReport from "./DownloadSurveyReport.vue";
 export default {
   name: "view survey",
   props: ["id"],
+  components: {
+    DownloadSurveyReport,
+    SurveyListItem,
+  },
   data() {
     return {
       openShareLink: false,
       userEmail: "",
+      exportFileData: [],
       survey: {
         id: 1,
         survey_title: "",
@@ -84,12 +91,6 @@ export default {
         questions: [
           {
             title: "What is astronomy",
-          },
-          {
-            title: "Study on climate change",
-          },
-          {
-            title: "Study on pollution",
           },
         ],
       },
@@ -105,9 +106,6 @@ export default {
       message: "View survey details and questions",
       submitLinkMessage: "",
     };
-  },
-  components: {
-    SurveyListItem,
   },
   methods: {
     retreiveSurvey() {
@@ -141,9 +139,19 @@ export default {
           this.submitLinkMessage = e.response.data.message;
         });
     },
+    retreiveSurveyReportData() {
+      SurveyDataService.fetchSurveyReportDetails(this.id)
+        .then((response) => {
+          this.exportFileData = response.data;
+        })
+        .catch((e) => {
+          this.message = e.response.data.message;
+        });
+    },
   },
   mounted() {
     this.retreiveSurvey();
+    this.retreiveSurveyReportData();
   },
 };
 </script>
