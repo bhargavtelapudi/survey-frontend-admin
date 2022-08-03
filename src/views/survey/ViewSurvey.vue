@@ -21,7 +21,7 @@
       <div class="share__link">
     <v-form class="survey__question" v-if="openShareLink === true" @submit="sendSurveyLink">
       <h1 class="survey__question--heading">SHARE SURVEY LINK TO PARTICIPANTS</h1>
-      <span class="error" v-show="submitLinkMessage">{{submitLinkMessage}}</span>
+      <span class="error highlight__text" v-show="submitLinkMessage">{{submitLinkMessage}}</span>
       <v-text-field
         v-model="userEmail"
         label="Enter participant email Id"
