@@ -16,7 +16,7 @@ class SurveyDataService {
     });
   }
   getSurvey(id) {
-    return http.get(`/survey/${id}`, {
+    return http.get(`/survey/${id}?responses=true`, {
       headers: {
         'x-access-token': sessionStorage.getItem("authToken")
       }
@@ -58,7 +58,7 @@ class SurveyDataService {
     });
   }
   fetchSurveyReportDetails(surveyId) {
-    return http.get(`/survey/report?surveyId=${surveyId}`, {
+    return http.get(`/surveyreport?surveyId=${surveyId}`, {
       headers: {
         'x-access-token': sessionStorage.getItem("authToken")
       }
