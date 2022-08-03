@@ -167,6 +167,7 @@ h6 {
 .highlight__text {
   color: rgb(144, 144, 187);
   font-size: 16px;
+  font-weight: 600;
 }
 
 .v-input__details {
