@@ -33,6 +33,7 @@
             @viewSurvey="goView(survey.id)"
             @editSurvey="goEdit(survey.id)"
             @handlePublish="handlePublish(survey)"
+             show="true"
           />
         </div>
       </v-row>
