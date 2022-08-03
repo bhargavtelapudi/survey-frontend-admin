@@ -31,7 +31,9 @@
           <div class="album__item--wrapper">
             <SurveyListItem v-for="survey in surveys" :key="survey.id" :survey="survey"
               @deleteSurvey="goDelete(survey.id)" @viewSurvey="goView(survey.id)"
-              @handlePublish="handlePublish(survey)" />
+              @handlePublish="handlePublish(survey)" 
+              show="false"
+              />
           </div>
         </v-row>
       </div>

@@ -7,21 +7,13 @@
       <span> {{ survey.survey_description }}</span>
     </v-col>
     <v-col cols="4" sm="2" class="published__switch">
-      <v-switch
-        :label="`${survey.survey_isPublished ? 'Published' : 'UnPublished'}`"
-        v-model="survey.survey_isPublished"
-        @change="handlePublish"
-        color="success"
-      ></v-switch>
+      <v-switch :label="`${survey.survey_isPublished ? 'Published' : 'UnPublished'}`"
+        v-model="survey.survey_isPublished" @change="handlePublish" color="success"></v-switch>
     </v-col>
     <v-col cols="9" sm="1">
-      <v-btn
-        size="x-small"
-        icon="mdi-format-list-bulleted-type"
-        @click="viewSurvey"
-      />
+      <v-btn size="x-small" icon="mdi-format-list-bulleted-type" @click="viewSurvey" />
     </v-col>
-    <v-col cols="9" sm="1">
+    <v-col cols="9" sm="1" v-show="show === 'true'">
       <v-btn size="x-small" icon="mdi-pencil" @click="editSurvey" />
     </v-col>
     <v-col cols="9" sm="1">
@@ -33,6 +25,7 @@
 export default {
   props: {
     survey: Object,
+    show: String
   },
   data() {
     return {};
@@ -61,9 +54,11 @@ export default {
   padding: 5px 0;
   border-top: 1px solid var(--colorLightGrey);
 }
+
 .published__switch .v-input__details {
   display: none !important;
 }
+
 .published__switch .v-input {
   display: inline-block !important;
   margin: 0 !important;
@@ -71,6 +66,7 @@ export default {
   height: 20px !important;
   margin-top: -50px !important;
 }
+
 .published__switch .v-input--density-default {
   --v-input-control-height: 25px !important;
 }
